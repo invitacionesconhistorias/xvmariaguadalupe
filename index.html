@@ -262,7 +262,9 @@ textarea.conf-input{min-height:70px;resize:vertical}
     <label class="conf-label" for="confMensaje">MENSAJE PARA MARÍA GUADALUPE (OPCIONAL)</label>
     <textarea id="confMensaje" class="conf-input" placeholder="Déjale unas palabras…"></textarea>
     <p class="conf-msg" id="confMsg"></p>
-    <button class="btn conf-send" onclick="enviarConfirmacion()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>CONFIRMAR POR WHATSAPP</button>
+    <label class="conf-label" style="text-align:center;margin-top:1.1rem">ENVIAR CONFIRMACIÓN A:</label>
+    <button class="btn conf-send" onclick="enviarConfirmacion('573043359594')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>304 335 9594</button>
+    <button class="btn conf-send ghost" style="margin-top:.6rem" onclick="enviarConfirmacion('573044700476')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>304 470 0476</button>
   </div>
 </div></div>
 
@@ -299,7 +301,7 @@ textarea.conf-input{min-height:70px;resize:vertical}
 <audio id="voz" src="audio.mp3" preload="auto" playsinline></audio>
 
 <script>
-const WHATSAPP='50581912724';
+const WHATSAPP='573043359594';
 const SEGS=[[4.3,10.7,'Ha llegado a mi conocimiento que se aproxima una celebración extraordinaria.'],
   [10.8,20.95,'La señorita María Guadalupe dejará atrás la inocencia de la niñez para dar la bienvenida a sus quince primaveras.'],
   [21.4,31.5,'Tengo el honor de invitarlos a una velada inolvidable, donde reinarán la elegancia, la música y la alegría.'],
@@ -368,12 +370,12 @@ function addToCalendar(){
 
 let asisteVal='';
 function pickOpt(b){document.querySelectorAll('.opt').forEach(o=>{o.classList.remove('sel');o.setAttribute('aria-checked','false');});b.classList.add('sel');b.setAttribute('aria-checked','true');asisteVal=b.dataset.v;}
-function enviarConfirmacion(){const nombre=$('confNombre').value.trim();const mensaje=$('confMensaje').value.trim();const msg=$('confMsg');
+function enviarConfirmacion(num){num=num||WHATSAPP;const nombre=$('confNombre').value.trim();const mensaje=$('confMensaje').value.trim();const msg=$('confMsg');
   if(!nombre){msg.textContent='Escribe tu nombre para confirmar.';return;}
   if(!asisteVal){msg.textContent='Elige si asistirás o no.';return;}
   if(!WHATSAPP){msg.textContent='La confirmación estará disponible muy pronto.';return;}
   msg.textContent='';let texto=`🌸 Confirmación de asistencia – XV años de María Guadalupe\n\nNombre: ${nombre}\nRespuesta: ${asisteVal}`;if(mensaje)texto+=`\nMensaje: ${mensaje}`;
-  window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(texto)}`,'_blank');}
+  window.open(`https://api.whatsapp.com/send?phone=${num}&text=${encodeURIComponent(texto)}`,'_blank');}
 </script>
 </body>
 </html>
